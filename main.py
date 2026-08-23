@@ -2,17 +2,91 @@ from biblioteca import Biblioteca
 from livro import Livro
 from usuario import Usuario
 
+biblioteca = Biblioteca()
+
 def cadastrar_livro():
-    pass
+
+    titulo = input('Digite o titulo do livro que deseja cadastrar: ').strip()
+
+    if not titulo:
+        print('Não deixe o título em branco.')
+        return
+    
+    autor = input('Digite o autor do livro que está cadastrando: ').strip()
+
+    if not autor:
+        print('Digite um autor válido para o livro que está sendo cadastrado')
+        return
+
+    try:
+        ano_publicacao = int(input('Digite o ano da publicação do livro: ').strip())
+        if ano_publicacao <= 0:
+            print('Digite um número maior do que zero para o ano de publicação')
+            return
+    except ValueError:
+        print('Digite apenas números.')
+        return
+    try:
+        edicao = int(input('Digite a edição do livro: ').strip())
+        if edicao <= 0:
+            print('Digite um número maior do que zero para cadastrar a edição do livro.')
+            return   
+    except ValueError:
+        print('Digite apenas números para cadastrar a edição do livro.')
+        return
+
+    livro = Livro(titulo, autor, ano_publicacao, edicao)
+
+    biblioteca.adicionar_livro(livro)
 
 def cadastrar_usuario():
-    pass
+
+
+    nome = input('Digite o nome do usuário que deseja cadastrar: ').strip()
+    if not nome:
+        print('Digite um nome para o usuário que está sendo cadastrado.')
+        return
+
+
+    cpf = input('Digite o número do CPF com base no seguinte formato XXX.XXX.XXX - XX: ').strip()
+    if not cpf:
+        print('Digite um cpf para o cadastro.')
+        return
+
+    if len(cpf) != 14:
+        print('Digite o CPF no formato XXX.XXX.XXX-XX.')
+        return
+
+    if cpf[3] != '.' or cpf[7] != '.' or cpf[11] != '-':
+        print('Digite o CPF no formato XXX.XXX.XXX-XX.')
+        return
+
+    cpf_numeros = cpf.replace('.','').replace('-','')
+
+    if not cpf_numeros.isdigit():
+        print('Digite um CPF válido para o cadastro.')
+        return
+
+    email = input('Digite o e-mail do usuário: ').strip()
+    if not email:
+        print('Digite um e-mail para o cadastro')
+        return
+
+    if '@' not in email or '.' not in email:
+        print('Digite um e-mail válido.')
+        return
+
+    usuario = Usuario(nome, cpf, email)
+
+    biblioteca.cadastrar_usuario(usuario)
 
 def listar_todos_os_livros():
-    pass
+
+    biblioteca.listar_livros()
 
 def listar_usuarios():
-    pass
+
+    biblioteca.listar_usuarios()
 
 def realizar_emprestimo():
     pass
