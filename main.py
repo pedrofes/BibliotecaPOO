@@ -6,7 +6,7 @@ biblioteca = Biblioteca()
 
 def cadastrar_livro():
 
-    titulo = input('Digite o titulo do livro que deseja cadastrar: ').strip()
+    titulo = input('Digite o título do livro que deseja cadastrar: ').strip()
 
     if not titulo:
         print('Não deixe o título em branco.')
@@ -48,9 +48,9 @@ def cadastrar_usuario():
         return
 
 
-    cpf = input('Digite o número do CPF com base no seguinte formato XXX.XXX.XXX - XX: ').strip()
+    cpf = input('Digite o número do CPF com base no seguinte formato XXX.XXX.XXX-XX: ').strip()
     if not cpf:
-        print('Digite um cpf para o cadastro.')
+        print('Digite um CPF para o cadastro.')
         return
 
     if len(cpf) != 14:
@@ -92,7 +92,7 @@ def realizar_emprestimo():
     titulo = input('Digite o título do livro que será emprestado da biblioteca: ').strip()
 
     if not titulo:
-        print('Titulo vazio. Digite um título para realizar o empréstimo.')
+        print('Título vazio. Digite um título para realizar o empréstimo.')
         return
 
     livro = biblioteca.buscar_livro(titulo) # buscando objeto a partir do título do livro
@@ -101,10 +101,10 @@ def realizar_emprestimo():
         print('Nenhum livro com esse título cadastrado no sistema.')
         return
 
-    cpf = input('Digite o cpf do usuario que pegará o livro emprestado: ').strip()
+    cpf = input('Digite o CPF do usuário que pegará o livro emprestado: ').strip()
 
     if not cpf:
-        print('Digite o cpf do usuário que realizará o empréstimo.')
+        print('Digite o CPF do usuário que realizará o empréstimo.')
         return
 
     usuario = biblioteca.buscar_usuario(cpf)
@@ -114,35 +114,36 @@ def realizar_emprestimo():
         return
 
     biblioteca.realizar_emprestimo(usuario, livro)
+    print('Livro emprestado!')
 
 
 def realizar_devolucao():
 
-        titulo = input('Digite o título do livro que deseja devolver à biblioteca: ').strip()
-        
-        if not titulo:
-            print('Titulo vazio. Digite um título para realizar a devolução.')
-            return
-        
-        livro = biblioteca.buscar_livro(titulo) # buscando objeto a partir do título do livro
+    titulo = input('Digite o título do livro que deseja devolver à biblioteca: ').strip()
     
-        if not livro:
-            print('Nenhum livro com esse título cadastrado no sistema.')
-            return
+    if not titulo:
+        print('Título vazio. Digite um título para realizar a devolução.')
+        return
+    
+    livro = biblioteca.buscar_livro(titulo) # buscando objeto a partir do título do livro
 
-        cpf = input('Digite o cpf do usuario que está realizando a devolução do livro: ').strip()
-        
-        if not cpf:
-            print('Digite o cpf do usuário que está devolvendo o livro.')
-            return
-    
-        usuario = biblioteca.buscar_usuario(cpf)
-    
-        if not usuario:
-            print('Usuário não encontrado no cadastro.')
-            return
+    if not livro:
+        print('Nenhum livro com esse título cadastrado no sistema.')
+        return
 
-        biblioteca.realizar_devolucao(usuario,livro)
+    cpf = input('Digite o CPF do usuário que está realizando a devolução do livro: ').strip()
+    
+    if not cpf:
+        print('Digite o CPF do usuário que está devolvendo o livro.')
+        return
+
+    usuario = biblioteca.buscar_usuario(cpf)
+
+    if not usuario:
+        print('Usuário não encontrado no cadastro.')
+        return
+
+    biblioteca.realizar_devolucao(usuario, livro)
 
 def listar_livros_disponiveis():
     biblioteca.listar_livros_disponiveis()
@@ -185,7 +186,7 @@ def menu():
             opcao = int(input('Digite o número da opção que deseja selecionar: ').strip())
         except ValueError:
             print('Digite apenas números.')
-            return
+            continue
         if opcao == 1:
             cadastrar_livro()
         elif opcao == 2:
@@ -209,6 +210,6 @@ def menu():
             break
         else:
             print('Digite apenas o número de uma das opções indicadas.')
-            return
+            continue
 
 menu()

@@ -76,7 +76,7 @@ class Biblioteca:
 
     def listar_livros_disponiveis(self):
 
-        livro_disponiveil_para_aluguel = False
+        livro_disponivel_encontrado = False
 
         if not self.todos_os_livros:
             print('Nenhum livro cadastrado no sistema.')
@@ -84,10 +84,10 @@ class Biblioteca:
 
         for livro in self.todos_os_livros:
             if livro.disponivel:
-                livro_disponivel_para_aluguel = True
+                livro_disponivel_encontrado = True
                 print(livro)
 
-        if not livro_disponivel_para_aluguel:
+        if not livro_disponivel_encontrado:
             print('Todos os livros estão emprestados no momento.')
             return
 
@@ -112,7 +112,6 @@ class Biblioteca:
 
         for livro in self.todos_os_livros:
             if livro.titulo == titulo:
-                print('Livro localizado:')
                 return livro
 
         return None
