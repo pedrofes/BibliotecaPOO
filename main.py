@@ -89,19 +89,81 @@ def listar_usuarios():
     biblioteca.listar_usuarios()
 
 def realizar_emprestimo():
-    pass
+    titulo = input('Digite o título do livro que será emprestado da biblioteca: ').strip()
+
+    if not titulo:
+        print('Titulo vazio. Digite um título para realizar o empréstimo.')
+        return
+
+    livro = biblioteca.buscar_livro(titulo) # buscando objeto a partir do título do livro
+
+    if not livro:
+        print('Nenhum livro com esse título cadastrado no sistema.')
+        return
+
+    cpf = input('Digite o cpf do usuario que pegará o livro emprestado: ').strip()
+
+    if not cpf:
+        print('Digite o cpf do usuário que realizará o empréstimo.')
+        return
+
+    usuario = biblioteca.buscar_usuario(cpf)
+
+    if not usuario:
+        print('Usuário não encontrado no cadastro.')
+        return
+
+    biblioteca.realizar_emprestimo(usuario, livro)
+
 
 def realizar_devolucao():
-    pass
+
+        titulo = input('Digite o título do livro que deseja devolver à biblioteca: ').strip()
+        
+        if not titulo:
+            print('Titulo vazio. Digite um título para realizar a devolução.')
+            return
+        
+        livro = biblioteca.buscar_livro(titulo) # buscando objeto a partir do título do livro
+    
+        if not livro:
+            print('Nenhum livro com esse título cadastrado no sistema.')
+            return
+
+        cpf = input('Digite o cpf do usuario que está realizando a devolução do livro: ').strip()
+        
+        if not cpf:
+            print('Digite o cpf do usuário que está devolvendo o livro.')
+            return
+    
+        usuario = biblioteca.buscar_usuario(cpf)
+    
+        if not usuario:
+            print('Usuário não encontrado no cadastro.')
+            return
+
+        biblioteca.realizar_devolucao(usuario,livro)
 
 def listar_livros_disponiveis():
-    pass
+    biblioteca.listar_livros_disponiveis()
 
 def listar_livros_emprestados():
-    pass
+    biblioteca.listar_livros_emprestados()
 
 def buscar_livro_pelo_titulo():
-    pass
+    titulo = input('Digite o título do livro que deseja buscar no sistema: ').strip()
+
+    if not titulo:
+        print('Digite um título para realizar a busca.')
+        return
+
+    livro = biblioteca.buscar_livro(titulo)
+
+    if livro:
+        print('Livro encontrado!')
+        print(livro)
+    else:
+        print('Livro não encontrado no sistema.')
 
 def encerrar_o_programa():
     print('Programa encerrado.')

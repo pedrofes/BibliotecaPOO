@@ -116,3 +116,11 @@ class Biblioteca:
                 return livro
 
         return None
+
+    def buscar_usuario(self, cpf):
+
+        for usuario in self.usuarios_cadastrados:
+            if usuario.cpf == cpf:
+                return usuario
+
+        return None
