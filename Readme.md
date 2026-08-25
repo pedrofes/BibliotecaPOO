@@ -77,7 +77,7 @@ python main.py
 
 O programa funciona por meio de um menu no terminal, com opções numéricas de 1 a 10.
 
-Para o cadastro de CPF, é necessário utilizar o seguinte formato:
+Para o cadastro de CPF, é necessário utilizar o seguinte formato (padrão):
 
 `XXX.XXX.XXX-XX`
 
