@@ -19,6 +19,7 @@ A validação das informações cadastradas também foi um dos focos do trabalho
 - Listar livros disponíveis
 - Listar livros emprestados
 - Buscar livro pelo título
+- Buscar usuário pelo CPF
 - Menu interativo
 - Encerrar o programa
 
