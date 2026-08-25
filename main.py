@@ -166,6 +166,35 @@ def buscar_livro_pelo_titulo():
     else:
         print('Livro não encontrado no sistema.')
 
+def buscar_usuario_pelo_cpf():
+
+    cpf = input('Digite o número do CPF com base no seguinte formato XXX.XXX.XXX-XX: ').strip()
+
+    if not cpf:
+        print('Digite um CPF para realizar a busca.')
+        return
+    
+    if len(cpf) != 14:
+        print('Digite o CPF no formato XXX.XXX.XXX-XX.')
+        return
+    
+    if cpf[3] != '.' or cpf[7] != '.' or cpf[11] != '-':
+        print('Digite o CPF no formato XXX.XXX.XXX-XX.')
+        return
+    
+    cpf_numeros = cpf.replace('.','').replace('-','')
+
+    if not cpf_numeros.isdigit():
+        print('Digite um CPF válido para a busca.')
+        return
+    
+    usuario = biblioteca.buscar_usuario(cpf)
+
+    if usuario:
+        print(usuario)
+    else:
+        print('Nenhum usuário encontrado no sistema com este CPF.')
+
 def encerrar_o_programa():
     print('Programa encerrado.')
     
@@ -181,7 +210,8 @@ def menu():
         print('7. Listar livros disponíveis')
         print('8. Listar livros emprestados')
         print('9. Buscar livro pelo título')
-        print('10. Encerrar o programa')
+        print('10. Buscar usuário pelo CPF')
+        print('11. Encerrar o programa')
         try:
             opcao = int(input('Digite o número da opção que deseja selecionar: ').strip())
         except ValueError:
@@ -206,6 +236,8 @@ def menu():
         elif opcao == 9:
             buscar_livro_pelo_titulo()
         elif opcao == 10:
+            buscar_usuario_pelo_cpf()
+        elif opcao == 11:
             encerrar_o_programa()
             break
         else:
