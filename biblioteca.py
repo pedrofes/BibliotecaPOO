@@ -111,7 +111,7 @@ class Biblioteca:
     def buscar_livro(self, titulo):
 
         for livro in self.todos_os_livros:
-            if livro.titulo == titulo:
+            if livro.titulo.lower() == titulo.lower():
                 return livro
 
         return None
